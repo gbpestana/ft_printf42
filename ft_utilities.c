@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:18:25 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/02 19:09:34 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:00:57 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	ft_putnbr_base(int n, char c)
 	char			*hex;
 
 	hex = "0123456789abcdef";
-	if (c == 'h')
+	if (c == 'x' || c == 'X' || c == 'p')
 		base = 16;
+		if(c == 'p')
+			ft_putstr("0x");
 	else
 		base = 10;
 	if (n < 0)
@@ -43,5 +45,8 @@ void	ft_putnbr_base(int n, char c)
 		nbr = (unsigned int)n;
 	if (nbr >= base)
 		ft_putnbr_base((nbr/base), c);
-	ft_putchar(hex[nbr % base]);
+	if (base == 'X')
+		ft_putchar(hex[nbr % base] + 32);
+	else
+		ft_putchar(hex[nbr % base]);
 }
