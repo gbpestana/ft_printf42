@@ -6,11 +6,11 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:49:51 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/07 15:34:20 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:11:44 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_format(char flag, va_list arg)
 {
@@ -23,7 +23,7 @@ int	ft_print_format(char flag, va_list arg)
 	else if (flag == 'x' || flag == 'X')
 		return (ft_preputnbr(va_arg(arg, int), flag));
 	else if (flag == 'p')
-		return (ft_preputnbr(va_arg(arg, int), flag));
+		return (ft_preputnbr((unsigned long)va_arg(arg, int), flag));
 	else if (flag == '%')
 		return (ft_putchar_printf('%'));
 	return (0);
@@ -58,5 +58,6 @@ int	ft_printf(const char *format, ...)
 // 	char *ptr;
 
 // 	ptr = "mamao";
-// 	size = ft_printf("Hello World: %c, %s, %i, %%, %p, %x, %X \n", 'H', ptr, 42, &ptr, 42, 42);
+// 	size = ft_printf("Hello World: %c, %s,
+//%i, %%, %p, %x, %X \n", 'H', ptr, 42, &ptr, 42, 42);
 // }

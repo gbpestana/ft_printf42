@@ -1,7 +1,8 @@
-SRCS =ft_printf.c ft_utilities.c
+SRCS = ft_printf.c ft_utilities.c
 
 NAME = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+CC = gcc
 
 OBJS = $(SRCS:.c=.o)
 
@@ -10,13 +11,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-%.0: %.c
-	gcc -c $(FLAGS) $< -o $@
+%.o: %.c
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	rm -f $(OBJS)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
