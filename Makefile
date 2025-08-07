@@ -1,4 +1,4 @@
-SRCS = ft_printf.c ft_utilities.c
+SRCS = ft_printf.c ft_utilities.c ft_utilities2.c
 
 NAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror

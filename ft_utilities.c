@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:18:25 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/07 16:11:50 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:58:36 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,51 +24,20 @@ int	ft_putstr_printf(char *s)
 
 	count = 0;
 	if (!s)
-		return (ft_putstr_printf("null"));
+		return (ft_putstr_printf("NULL"));
 	while (*s)
 		count += ft_putchar_printf((int)*s++);
 	return (count);
 }
 
-int	ft_preputnbr(int n, char c)
+int	ft_putptr(unsigned long n)
 {
-	unsigned int	nbr;
-	int				base;
-	int				count;
+	int count;
 
 	count = 0;
-	if (c == 'x' || c == 'X' || c == 'p')
-	{
-		base = 16;
-		if (c == 'p')
-			count += ft_putstr_printf("0x");
-	}
-	else
-		base = 10;
-	if (n < 0)
-	{
-		count += ft_putchar_printf('-');
-		nbr = (unsigned int) -n;
-	}
-	else
-		nbr = (unsigned int)n;
-	return (count += ft_putnbr_base(nbr, base, c));
-}
-
-int	ft_putnbr_base(unsigned int nbr, int b, char c)
-{
-	char	*hex_lo;
-	char	*hex_up;
-	int		count;
-
-	count = 0;
-	hex_lo = "0123456789abcdef";
-	hex_up = "0123456789ABCDEF";
-	if (nbr >= (unsigned int)b)
-		ft_putnbr_base((nbr / b), b, c);
-	if (c == 'X')
-		count += ft_putchar_printf(hex_up[nbr % b]);
-	else
-		count += ft_putchar_printf(hex_lo[nbr % b]);
+	if (!n)
+		return (count += ft_putstr_printf("0x0"));
+	count += ft_putstr_printf("0x");
+	count += ft_putnbr_base(n, 16, 'x');
 	return (count);
 }
