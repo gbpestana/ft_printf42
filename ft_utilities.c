@@ -6,39 +6,49 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:18:25 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/06 15:00:57 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/07 11:37:29 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(int c)
 {
-	write (1, &c, 1);
+	int count;
+
+	count = 0;
+	count += write (1, &c, 1);
+	return (count);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
+	int count;
+
+	count = 0;
 	while (*s)
-		ft_putchar(*s++);
+		count += ft_putchar((int)*s++);
+	return (count);
 }
 
-void	ft_putnbr_base(int n, char c)
+int	ft_putnbr_base(int n, char c)
 {
 	unsigned int	nbr;
 	unsigned int	base;
 	char			*hex;
+	int 			count;
 
+	count = 0;
 	hex = "0123456789abcdef";
 	if (c == 'x' || c == 'X' || c == 'p')
 		base = 16;
 		if(c == 'p')
-			ft_putstr("0x");
+			count += ft_putstr("0x");
 	else
 		base = 10;
 	if (n < 0)
 	{
-		ft_putchar('-');
+		count += ft_putchar('-');
 		nbr = (unsigned int) -n;
 	}
 	else
@@ -46,7 +56,8 @@ void	ft_putnbr_base(int n, char c)
 	if (nbr >= base)
 		ft_putnbr_base((nbr/base), c);
 	if (base == 'X')
-		ft_putchar(hex[nbr % base] + 32);
+		count += ft_putchar(hex[nbr % base] + 32);
 	else
-		ft_putchar(hex[nbr % base]);
+		count += ft_putchar(hex[nbr % base]);
+	return (count);
 }
