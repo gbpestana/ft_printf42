@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:49:51 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/11 13:43:14 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:16:04 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_select_print(int flag, va_list args)
 	else if (flag == 1)
 		return (ft_putstr_printf(va_arg(args, char *)));
 	else if (flag == 2)
-		return (ft_putptr((unsigned long)va_arg(args, void *)));
+		return (ft_putptr(va_arg(args, void *)));
 	else if (flag == 3 || flag == 4)
 		return (ft_putnbr_base(va_arg(args, int), flag));
 	else if (flag == 5)
@@ -60,13 +60,14 @@ static int	ft_printf_format(const char *format, va_list arg)
 		if (format[i] == '%' && format[i + 1])
 		{
 			i++;
-			b += ft_isvalid(format[i]);
+			b = ft_isvalid(format[i]);
 			if (b >= 0 && b <= 8)
 				total += ft_select_print(b, arg);
 			else
 				return (0);
 		}
-		total += ft_putchar_printf(format[i]);
+		else
+			total += ft_putchar_printf(format[i]);
 		i++;
 	}
 	return (total);
