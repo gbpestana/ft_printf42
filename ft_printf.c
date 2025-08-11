@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:49:51 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/07 16:54:49 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/11 11:02:30 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (*format)
-			total += ft_print_format(*format, arg);
+				total += ft_print_format(*format, arg);
 		}
 		else
 			total += write (1, format, 1);
