@@ -6,48 +6,50 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:44:44 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/11 12:38:42 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:26:01 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_preputnbr(int n, char c)
+#include "ft_printf.h"
+
+static int	ft_putnbr_baseprintf(unsigned int nbr, int b, int flag)
 {
-	unsigned int	nbr;
-	int				base;
 	int				count;
+	char			*low_hex;
+	char			*hig_hex;
 
 	count = 0;
-	if (c == 'x' || c == 'X')
+	low_hex = "0123456789abcdef";
+	hig_hex = "0123456789ABCDEF";
+	if (nbr >= b)
+		count += ft_putnbr_baseprintf((nbr / b), b, flag);
+	if (flag == '7')
+		count += ft_putchar_printf(hig_hex[nbr % b]);
+	else
+		count += ft_putchar_printf(low_hex[nbr % b]);
+	return (count);
+}
+
+
+int	ft_putnbr_base(unsigned int n, int flag)
+{
+	int				count;
+	int				base;
+	unsigned int	nbr;
+
+	count = 0;
+	if (flag == '6' || flag == '7')
 		base = 16;
 	else
 		base = 10;
-	if (n < 0)
+	if (n < 0 && base == 10)
 	{
-		if (c == 'i' || c == 'd')
-			count += ft_putchar_printf('-');
-		nbr = (unsigned int) -n;
+		count += ft_putchar_printf('-');
+		nbr = -n;
 	}
 	else
-		nbr = (unsigned int)n;
-	return (count += ft_putnbr_base(nbr, base, c));
-}
-
-int	ft_putnbr_base(unsigned int nbr, int b, char c)
-{
-	char	*hex_lo;
-	char	*hex_up;
-	int		count;
-
-	count = 0;
-	hex_lo = "0123456789abcdef";
-	hex_up = "0123456789ABCDEF";
-	if (nbr >= (unsigned int)b)
-		ft_putnbr_base((nbr / b), b, c);
-	if (c == 'X')
-		count += ft_putchar_printf(hex_up[nbr % b]);
-	else
-		count += ft_putchar_printf(hex_lo[nbr % b]);
-	return (count);
+		nbr = n;
+	return (count += ft_putnbr_baseprintf(nbr, base, flag));
 }

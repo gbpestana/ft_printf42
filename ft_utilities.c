@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:18:25 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/07 16:58:36 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:30:29 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	ft_putptr(unsigned long n)
 
 	count = 0;
 	if (!n)
-		return (count += ft_putstr_printf("0x0"));
+		return (count += ft_putstr_printf("(nil)"));
 	count += ft_putstr_printf("0x");
-	count += ft_putnbr_base(n, 16, 'x');
+	count += ft_putnbr_base(n, 6);
 	return (count);
 }
