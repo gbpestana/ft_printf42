@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 18:18:25 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/11 13:30:29 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:44:58 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putstr_printf(char *s)
 
 	count = 0;
 	if (!s)
-		return (ft_putstr_printf("NULL"));
+		return (count += ft_putstr_printf("NULL"));
 	while (*s)
 		count += ft_putchar_printf((int)*s++);
 	return (count);
@@ -32,7 +32,7 @@ int	ft_putstr_printf(char *s)
 
 int	ft_putptr(unsigned long n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (!n)
