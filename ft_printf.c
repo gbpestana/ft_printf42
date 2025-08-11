@@ -6,7 +6,7 @@
 /*   By: grodrig2 <grodrig2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:49:51 by grodrig2          #+#    #+#             */
-/*   Updated: 2025/08/11 14:16:04 by grodrig2         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:41:24 by grodrig2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static int	ft_printf_format(const char *format, va_list arg)
 
 	i = 0;
 	total = 0;
-	b = 48;
 	while (format[i])
 	{
 		if (format[i] == '%' && format[i + 1])
