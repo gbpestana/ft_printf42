@@ -12,19 +12,19 @@
 
 #include "ft_printf.h"
 
-static int	ft_select_print(int flag, va_list args)
+static int	ft_select_print(char flag, va_list args)
 {
-	if (flag == 0)
+	if (flag == 'c')
 		return (ft_putchar_printf(va_arg(args, int)));
-	else if (flag == 1)
+	else if (flag == 's')
 		return (ft_putstr_printf(va_arg(args, char *)));
-	else if (flag == 2)
+	else if (flag == 'p')
 		return (ft_putptr(va_arg(args, void *)));
-	else if (flag == 3 || flag == 4)
+	else if (flag == 'd' || flag == 'i')
 		return (ft_putnbr_base(va_arg(args, int), flag));
-	else if (flag == 5)
+	else if (flag == 'u')
 		return (ft_putnbr_base(va_arg(args, unsigned int), flag));
-	else if (flag == 6 || flag == 7)
+	else if (flag == 'x' || flag == 'X')
 		return (ft_putnbr_base(va_arg(args, unsigned int), flag));
 	else
 		return (ft_putchar_printf('%'));
@@ -32,25 +32,21 @@ static int	ft_select_print(int flag, va_list args)
 
 static int	ft_isvalid(char c)
 {
-	int		i;
 	char	*valid;
 
-	i = 0;
 	valid = "cspdiuxX%";
-	while (valid[i])
+	while (*valid)
 	{
-		if (valid[i] == c)
-			return (i);
-		i++;
+		if (*valid++ == c)
+			return (1);
 	}
-	return (-1);
+	return (0);
 }
 
 static int	ft_printf_format(const char *format, va_list arg)
 {
 	int	total;
 	int	i;
-	int	b;
 
 	i = 0;
 	total = 0;
@@ -59,11 +55,10 @@ static int	ft_printf_format(const char *format, va_list arg)
 		if (format[i] == '%' && format[i + 1])
 		{
 			i++;
-			b = ft_isvalid(format[i]);
-			if (b >= 0 && b <= 8)
-				total += ft_select_print(b, arg);
+			if (ft_isvalid(format[i]))
+				total += ft_select_print(format[i], arg);
 			else
-				return (0);
+				return (total);
 		}
 		else
 			total += ft_putchar_printf(format[i]);

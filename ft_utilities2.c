@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	ft_putnbr_baseprintf(unsigned long nbr, int b, int flag)
+static int	ft_putnbr_baseprintf(unsigned long nbr, int b, char flag)
 {
 	int				count;
 	char			*low_hex;
@@ -23,27 +23,28 @@ static int	ft_putnbr_baseprintf(unsigned long nbr, int b, int flag)
 	hig_hex = "0123456789ABCDEF";
 	if (nbr >= (unsigned long)b)
 		count += ft_putnbr_baseprintf((nbr / b), b, flag);
-	if (flag == 7)
+	if (flag == 'X')
 		count += ft_putchar_printf(hig_hex[nbr % b]);
 	else
 		count += ft_putchar_printf(low_hex[nbr % b]);
 	return (count);
 }
 
-int	ft_putnbr_base(int n, int flag)
+int	ft_putnbr_base(int n, char flag)
 {
 	int				count;
 	int				base;
 	unsigned long	nbr;
 
 	count = 0;
-	if (flag == 6 || flag == 7)
+	if (flag == 'x' || flag == 'X')
 		base = 16;
 	else
 		base = 10;
 	if (n < 0 && base == 10)
 	{
-		count += ft_putchar_printf('-');
+		if (flag != 'u')
+			count += ft_putchar_printf('-');
 		nbr = -(unsigned long)n;
 	}
 	else

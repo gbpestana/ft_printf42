@@ -40,6 +40,6 @@ int	ft_putptr(void *ptr)
 		return (count += ft_putstr_printf("(nil)"));
 	count += ft_putstr_printf("0x");
 	ptr_print = (unsigned long)ptr;
-	count += ft_putnbr_base(ptr_print, 6);
+	count += ft_putnbr_base(ptr_print, 'x');
 	return (count);
 }

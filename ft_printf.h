@@ -20,6 +20,6 @@ int	ft_printf(const char *format, ...);
 int	ft_putchar_printf(int c);
 int	ft_putstr_printf(char *s);
 int	ft_putptr(void *ptr);
-int	ft_putnbr_base(int n, int flag);
+int	ft_putnbr_base(int n, char flag);
 
 #endif
