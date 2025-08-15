@@ -30,24 +30,29 @@ static int	ft_putnbr_baseprintf(unsigned long nbr, int b, char flag)
 	return (count);
 }
 
-int	ft_putnbr_base(int n, char flag)
+int	ft_putnbrbase_signed(long n, char flag)
 {
 	int				count;
-	int				base;
 	unsigned long	nbr;
 
 	count = 0;
-	if (flag == 'x' || flag == 'X')
-		base = 16;
-	else
-		base = 10;
-	if (n < 0 && base == 10)
+	if (n < 0)
 	{
-		if (flag != 'u')
-			count += ft_putchar_printf('-');
+		count += ft_putchar_printf('-');
 		nbr = -(unsigned long)n;
 	}
 	else
 		nbr = (unsigned long)n;
-	return (count += ft_putnbr_baseprintf(nbr, base, flag));
+	return (count += ft_putnbr_baseprintf(nbr, 10, flag));
+}
+
+int	ft_putnbrbase_unsigned(unsigned long n, char flag)
+{
+	int	base;
+
+	if (flag == 'x' || flag == 'X')
+		base = 16;
+	else
+		base = 10;
+	return (ft_putnbr_baseprintf(n, base, flag));
 }

@@ -13,13 +13,14 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include<unistd.h>
-# include<stdarg.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 int	ft_printf(const char *format, ...);
 int	ft_putchar_printf(int c);
 int	ft_putstr_printf(char *s);
 int	ft_putptr(void *ptr);
-int	ft_putnbr_base(int n, char flag);
+int	ft_putnbrbase_signed(long n, char flag);
+int	ft_putnbrbase_unsigned(unsigned long n, char flag);
 
 #endif

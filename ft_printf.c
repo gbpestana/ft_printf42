@@ -21,11 +21,11 @@ static int	ft_select_print(char flag, va_list args)
 	else if (flag == 'p')
 		return (ft_putptr(va_arg(args, void *)));
 	else if (flag == 'd' || flag == 'i')
-		return (ft_putnbr_base(va_arg(args, int), flag));
+		return (ft_putnbrbase_signed(va_arg(args, int), flag));
 	else if (flag == 'u')
-		return (ft_putnbr_base(va_arg(args, unsigned int), flag));
+		return (ft_putnbrbase_unsigned(va_arg(args, unsigned int), flag));
 	else if (flag == 'x' || flag == 'X')
-		return (ft_putnbr_base(va_arg(args, unsigned int), flag));
+		return (ft_putnbrbase_unsigned(va_arg(args, unsigned int), flag));
 	else
 		return (ft_putchar_printf('%'));
 }
